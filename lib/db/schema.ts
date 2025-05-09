@@ -1,5 +1,6 @@
 import  {pgTable , text , uuid , integer , boolean , timestamp} from "drizzle-orm/pg-core";
 import  { relations } from "drizzle-orm";
+import { Children } from "react";
 
 
 
@@ -38,12 +39,36 @@ export const files = pgTable("files" , {
 
     createdAt : timestamp("created_at").defaultNow().notNull(),
     updatedAt : timestamp("updated_at").defaultNow().notNull(),
-    
-
-
-
-
-
-
-
 })
+
+
+//making relations  using drizzle  ORM 
+//making relations in hierarchy case 
+
+/*
+parent => Each file/folder can have one parent folder.
+
+children => Each folder can have many child files/folder.
+*/
+
+
+export const  filesRelations  = relations(files , ({one , many}) => ({
+
+  parent : one(files , {
+     fields : [files.parentId],
+     references : [files.id]
+  }),
+
+
+
+
+  //there could be many files(childrens) inside the folder  
+  children : many(files)
+}))   
+
+
+//Type definations 
+//$inferSelect , inferred the selection which is  good for me 
+
+
+export const File = typeof files.$inferSelect
