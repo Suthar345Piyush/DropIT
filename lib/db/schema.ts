@@ -1,8 +1,10 @@
+/* 
+ Drizzle is  just an ORM layer which write SQL on your behalf
+*/
+
 import  {pgTable , text , uuid , integer , boolean , timestamp} from "drizzle-orm/pg-core";
 import  { relations } from "drizzle-orm";
 import { Children } from "react";
-
-
 
 export const files = pgTable("files" , {
     // unique id  
