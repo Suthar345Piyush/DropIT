@@ -19,6 +19,7 @@ if(!process.env.DATABASE_URL){
 
 async function runMigration() {
    try{
+     // this  mark ! is from typescript , telling compiler that this is not null or undefined  
      const sql = neon(process.env.DATABASE_URL!)
 
    // initialize the connection 
