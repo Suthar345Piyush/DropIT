@@ -187,6 +187,46 @@ export default function SignUpSchema(){
                  className="w-full"
                />
               </div>
+              <div className="space-y-2">
+                <label 
+                 htmlFor="passwordConfirmation"
+                 className="text-sm font-medium text-default-900">
+                  Confirm Password
+                </label>
+                <Input 
+                  id="passwordConfirmation"
+                   type={showConfirmPassword ? "text" : "password"}
+                    placeholder=".........."
+                    startContent={<Lock  className="h-4 w-4 text-default-500"/>}
+                    endContent={
+                      <Button 
+                       isIconOnly
+                       variant="light"
+                       size="sm"
+                       onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                       type="button"
+                      >
+                        {showConfirmPassword ? (
+                          <EyeOff className="h-4 w-4 text-default-500"/>
+                        ) : (
+                          <Eye className="h-4 w-4 text-default-500"/>
+                        )}
+                         </Button>
+                    }
+                      isInvalid={!!errors.passwordConfirmation}
+                      errorMessage = {errors.passwordConfirmation?.message}                    
+                     {...register("passwordConfirmation")}
+                     className="w-full"
+                    />
+              </div>
+
+              <div className="space-y-4">
+                 <div className="flex flex-start gap-2">
+                  <CheckCircle
+
+                 </div>
+
+              </div>
 
              </form>
           
