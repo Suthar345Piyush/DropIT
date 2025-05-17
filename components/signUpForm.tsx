@@ -15,6 +15,7 @@ import  {Divider} from "@heroui/divider";
 import { CircleAlert , Mail , Lock , Eye , EyeOff , CheckCircle, ShowerHead } from 'lucide-react';
 import {Input} from "@heroui/input";
 import {Button} from "@heroui/button";
+import Link from 'next/link';
 
 
 
@@ -193,6 +194,8 @@ export default function SignUpSchema(){
                  className="text-sm font-medium text-default-900">
                   Confirm Password
                 </label>
+
+
                 <Input 
                   id="passwordConfirmation"
                    type={showConfirmPassword ? "text" : "password"}
@@ -222,21 +225,27 @@ export default function SignUpSchema(){
 
               <div className="space-y-4">
                  <div className="flex flex-start gap-2">
-                  <CheckCircle
-
+                  <CheckCircle className="h-5 w-5 text-primary mt-0.5"/>
+                   <p className="text-sm text-default-600">By signing up , you agree to our Terms of Service and Privacy Policy.</p>
                  </div>
-
               </div>
-
+              <Button type="submit" color="primary" className="w-full" isLoading={isSubmitting}>
+             {isSubmitting ? "Creating account..." : "Create Account"}
+              </Button>
              </form>
-          
-          
+          </CardBody>
 
+   <Divider />
 
-              </CardBody>
+   // footer section of  card 
 
+    <CardFooter className="flex justify-center py-4">
+       <p className="text-sm text-default-600">Already have an account?{" "}
+       <Link href="/sign-in" className="text-primary hover:underline font-medium">Sign in</Link>
+      </p>
+    </CardFooter>
             </Card>
-         )
+         );
       }
 
       return(
