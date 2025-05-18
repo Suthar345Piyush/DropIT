@@ -12,7 +12,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import {Card, CardHeader, CardBody, CardFooter} from "@heroui/card";
 import  {Divider} from "@heroui/divider";
-import { CircleAlert , Mail , Lock , Eye , EyeOff , CheckCircle, ShowerHead } from 'lucide-react';
+import { CircleAlert , Mail , Lock , Eye , EyeOff , CheckCircle } from 'lucide-react';
 import {Input} from "@heroui/input";
 import {Button} from "@heroui/button";
 import Link from 'next/link';
@@ -22,7 +22,7 @@ import Link from 'next/link';
 
 
 
-export default function SignUpSchema(){
+export default function SignUpForm(){
     const  router  = useRouter();
     const [verifying , setVerifying] = useState(false);
     const [isSubmitting , setIsSubmitting] = useState(false);
@@ -246,12 +246,7 @@ export default function SignUpSchema(){
     </CardFooter>
             </Card>
          );
-      }
-
-      return(
-        <h1>Signup form with email and other fields</h1>
-      )
-
+    }
 }
 
 
