@@ -41,8 +41,8 @@ export default function signInForm(){
     }) 
 
     const onSubmit = async (data : z.infer<typeof signInSchema>) => {
-       
-      if(!isLoaded) return 
+      if(!isLoaded) return;
+
        setIsSubmitting(true)
        setAuthError(null)
 
@@ -55,11 +55,14 @@ export default function signInForm(){
 
 
            if(result.status === "complete"){
-             await setActive({session : result.createdSessionId})
-           } else {
-             setAuthError("Sign in error")
+             await setActive({session : result.createdSessionId});
+             router.push("/dashboard");
+           }  else {
+              console.error("Sign-in incomplete:", result);
+              setAuthError("Sign-in could not be completed. Please try again");
            }
        } catch(error : any){
+           console.log("Sign-in error:" , error);
            setAuthError(
              error.errors?.[0]?.message || "An error occured during sign in process"
            )
@@ -141,40 +144,7 @@ export default function signInForm(){
          className="w-full"
        />
       </div>
-      <div className="space-y-2">
-        <label 
-         htmlFor="passwordConfirmation"
-         className="text-sm font-medium text-default-900">
-          Confirm Password
-        </label>
-
-
-        <Input 
-          id="passwordConfirmation"
-           type={showPassword ? "text" : "password"}
-            placeholder=".........."
-            startContent={<Lock  className="h-4 w-4 text-default-500"/>}
-            endContent={
-              <Button 
-               isIconOnly
-               variant="light"
-               size="sm"
-               onClick={() => setShowPassword(!showPassword)}
-               type="button"
-              >
-                {showPassword ? (
-                  <EyeOff className="h-4 w-4 text-default-500"/>
-                ) : (
-                  <Eye className="h-4 w-4 text-default-500"/>
-                )}
-                 </Button>
-            }
-              isInvalid={!!errors.password}
-              errorMessage = {errors.password?.message}                    
-             {...register("password")}
-             className="w-full"
-            />
-      </div>
+      
 
       <Button type="submit"
        color="primary"
