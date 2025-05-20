@@ -16,7 +16,7 @@ export async function POST(request : NextRequest) {
    
      // parse request  body 
      // all the data comes  here  
-     
+
      const body = await request.json();
      const {imagekit , userId : bodyUserId} = body
 
@@ -56,7 +56,7 @@ export async function POST(request : NextRequest) {
    } catch(error){ 
         return NextResponse.json(
           {
-            error : "Failed to save info to database",
+            error : "Failed to save information to database",
           },
           {status : 500}
         );
