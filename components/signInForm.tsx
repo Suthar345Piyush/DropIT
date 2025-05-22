@@ -16,7 +16,7 @@ import Link from "next/link"
 
 
 
-export default function signInForm(){
+export default function SignInForm(){
 
    const  router  = useRouter();
    // use sign in hook from clerk 
