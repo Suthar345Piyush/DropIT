@@ -106,7 +106,7 @@ export  async function POST(request : NextRequest){
 
        // upload the file  to imagekit
        
-       await imagekit.upload({
+      const uploadResponse =  await imagekit.upload({
          file : fileBuffer,
          fileName : uniqueFilename,
          folder :  folderPath,
@@ -116,7 +116,17 @@ export  async function POST(request : NextRequest){
        //creating the file data 
 
        const fileData = {
-         
+        name : originalFilename,
+        path : uploadResponse.filePath,
+        size : file.size,
+        type : file.type,
+        fileUrl : uploadResponse.url,
+        thumbnailUrl : uploadResponse.thumbnailUrl || null,
+        userId : userId,
+        parentId : parentId,
+        isFolder : false,
+        isStarred : false,
+        isTrash : false
        }
 
 
